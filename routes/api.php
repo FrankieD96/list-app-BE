@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/checklists', [ChecklistController::class, 'getAllChecklists']);
+Route::get('/tasks', [TaskController::class, 'getAllTasks']);
 Route::get('/checklists/{checklistId}/tasks', [TaskController::class, 'getTasksByChecklistId']);

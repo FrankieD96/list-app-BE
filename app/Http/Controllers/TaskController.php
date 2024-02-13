@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    public function getAllTasks()
+    {
+        $tasks = Task::all();
+
+        return response()->json(['tasks' => $tasks->makeHidden(['created_at', 'updated_at'])]);
+    }
+
     public function getTasksByChecklistId($checklistId)
     {
         $tasks = Task::where('checklist_id', $checklistId)->get();

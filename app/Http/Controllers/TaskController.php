@@ -11,6 +11,10 @@ class TaskController extends Controller
     {
         $tasks = Task::where('checklist_id', $checklistId)->get();
 
-        return response()->json(['tasks' => $tasks]);
+        if ($tasks->isEmpty()) {
+            return response()->json(['message' => 'No tasks yet for this checklist']);
+        }
+
+        return response()->json(['tasks' => $tasks->makeHidden(['created_at', 'updated_at'])]);
     }
 }
